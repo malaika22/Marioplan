@@ -1,0 +1,36 @@
+@import '~antd/dist/antd.css';
+.nav-header{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+    background: #1a1a1a;
+    .nav-title{
+        color: #a85988;
+        // margin-left: 50px;
+    }
+    .nav-actions{
+        display: flex;
+        align-items: center;
+        margin-right: 50px;
+        .nav-menu{
+            // list-style: none;
+            display: flex;
+            background: #1a1a1a;
+            .nav-menu-item{
+                margin: 0px 10px;
+                color: white;
+                // a{
+                //     text-decoration: none;
+                //     color: white;
+                //     transition: .3s linear all;
+                // }
+                
+            }
+
+        
+        }
+    }
+
+}
+
