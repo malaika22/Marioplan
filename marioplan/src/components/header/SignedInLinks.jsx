@@ -1,20 +1,21 @@
 import React from 'react';
 import {Menu} from 'antd';
-import { Link } from 'react-router-dom';
 
 const SignedInLinks = () =>{
     return(
-        <Menu>
-            <Menu.Item>
-               <Link to='/' >New projects </Link>
+        <>
+        <Menu className="nav-menu">
+            <Menu.Item className="nav-menu-item" >
+              New projects
             </Menu.Item>
-            <Menu.Item>
-                <Link to='/' > Log Out</Link>
+            <Menu.Item className="nav-menu-item">
+                Log Out
             </Menu.Item>
-            <Menu.Item>
-                <Link to='/' >MA</Link>
+            <Menu.Item className="nav-menu-item">
+                MA
             </Menu.Item>
         </Menu>
+        </>
     )
 }
 
