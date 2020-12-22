@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProjectSummaryCard from './ProjectSummaryCard'
+import {GlobalContext} from '../context/GlobalState'
 
 
 const ProjectList = () =>{
+    const {projects} = useContext(GlobalContext)
+    console.log(projects)
     return (
         <div>
-            <ProjectSummaryCard/>
-            <ProjectSummaryCard />
-            <ProjectSummaryCard />
+            {projects.map(project => <ProjectSummaryCard key={project.id} project={project}/>)}
         </div>
     )
 }

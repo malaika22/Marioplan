@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card } from 'antd';
 
-const ProjectSummaryCard = () =>{
+const ProjectSummaryCard = ({project: {title, content, date}}) =>{
     return(
         <Card>
-            <h3>Project Title</h3>
-            <p>Project Details</p>
-            <p>Project Date</p>
+            <h3>{title}</h3>
+            <p>{content}</p>
+            <p>{date}</p>
         </Card>
 
     )

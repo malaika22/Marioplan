@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {Menu} from 'antd';
 
 const SignedInLinks = () =>{
@@ -6,7 +7,10 @@ const SignedInLinks = () =>{
         <>
         <Menu className="nav-menu">
             <Menu.Item className="nav-menu-item" >
-              New projects
+                <Link to='/project/createproject' >
+                    New projects
+                </Link>
+
             </Menu.Item>
             <Menu.Item className="nav-menu-item">
                 Log Out

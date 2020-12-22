@@ -11,12 +11,13 @@ function App() {
     
         <div className="App">
           <Layout>
+         
           <BrowserRouter>
-              <NavBar />
+          <NavBar />
               <Switch>
                 <Route exact path="/" component={Dashboard} />
+                <Route exact path="/project/createproject" component={CreateProject} />
                 <Route path="/project/:id" component={ProjectDetails}/>
-                <Route path="/project/createproject" component={CreateProject} />
               </Switch>   
           </BrowserRouter>
           </Layout>
