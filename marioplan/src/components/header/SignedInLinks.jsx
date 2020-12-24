@@ -1,16 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 import {Menu} from 'antd';
+import CreateProject from '../projects/CreateNewProject';
 
 const SignedInLinks = () =>{
+    const [showCreateProjectModal, setShowCreateProjectModal] = useState(false)
     return(
         <>
         <Menu className="nav-menu">
-            <Menu.Item className="nav-menu-item" >
-                <Link to='/project/createproject' >
+            <Menu.Item className="nav-menu-item" onClick={() => setShowCreateProjectModal(!showCreateProjectModal)} >
                     New projects
-                </Link>
-
             </Menu.Item>
             <Menu.Item className="nav-menu-item">
                 Log Out
@@ -19,6 +18,7 @@ const SignedInLinks = () =>{
                 MA
             </Menu.Item>
         </Menu>
+        {showCreateProjectModal && <CreateProject showCreateProjectModal={showCreateProjectModal} setShowCreateProjectModal={setShowCreateProjectModal}/>}
         </>
     )
 }
