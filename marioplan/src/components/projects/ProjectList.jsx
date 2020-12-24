@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import ProjectSummaryCard from './ProjectSummaryCard'
-import {GlobalContext} from '../context/GlobalState'
+import {ProjectContext} from '../context/ProjectContext'
 
 
 const ProjectList = () =>{
-    const {projects} = useContext(GlobalContext)
+    const {projects} = useContext(ProjectContext)
+    console.log(projects)
     console.log(projects)
     return (
         <div>

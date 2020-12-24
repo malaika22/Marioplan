@@ -16,7 +16,7 @@ function App() {
           <NavBar />
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/project/createproject" component={CreateProject} />
+                {/* <Route exact path="/project/createproject" component={CreateProject} /> */}
                 <Route path="/project/:id" component={ProjectDetails}/>
               </Switch>   
           </BrowserRouter>
