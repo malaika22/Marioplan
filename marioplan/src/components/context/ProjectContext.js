@@ -1,23 +1,34 @@
-import React, {createContext, useContext ,useReducer, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import firebase from '../config/fbConfig'
 
-const initState = {
-    projects: [
-      {id: '1', title: 'help me find peach', content: 'blah blah blah' , date: '22 Dec, 22'},
-      {id: '2', title: 'collect all the stars', content: 'blah blah blah' , date: '22 Dec, 22'},
-      {id: '3', title: 'egg hunt with yoshi', content: 'blah blah blah' , date: '22 Dec, 22'}
-    ]
-}
-
 export const ProjectContext = createContext()
-
-
 export const ProjectContextProvider = ({children}) =>{
     const db = firebase.firestore()
-    const [projects, setProjects] = useState(initState.projects) 
+    const [projects, setProjects] = useState([]) 
+    console.log(firebase)
+    const [loading,setLoading] =useState(true)
+    useEffect(()=>{
+        db.collection('projects').onSnapshot( snapshot => {
+                console.log(snapshot)
+                const dataArr = []
+                for (let i in snapshot){
+                    console.log(i)
+                }
+                snapshot.forEach( doc => {
+                    dataArr.push({...doc.data()})
+                })
+                fetchingData(dataArr)
+                setLoading(false)
+                
+        })
+    },[])
+
+    const fetchingData = (userProjects) =>{
+        setProjects([...projects, ...userProjects])
+        console.log(projects)
+    }
 
     const createProject = (project) => {
-        // setProjects([...projects, project])
         db.collection('projects').add({
             ...project,
             authorFirstName : 'Malaika' ,
@@ -26,11 +37,13 @@ export const ProjectContextProvider = ({children}) =>{
             createdAt: new Date()
         }).then(()=> setProjects([...projects, project]))
     }
-
+    
     return(
         <ProjectContext.Provider value={{
             projects: projects, 
-            createProject : createProject} }>
+            createProject : createProject,
+            loading:loading
+            } }>
             {children}
         </ProjectContext.Provider>
     )
