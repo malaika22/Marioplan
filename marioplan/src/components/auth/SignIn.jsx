@@ -6,7 +6,13 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const SignIn = ({showSignInModal, setSignInShowModal}) =>{
 
-    const {userLogin, setUserLogin,signIn} = useContext(UserContext)
+
+    const {signIn} = useContext(UserContext)
+    const [userLogin, setUserLogin] =  useState({
+        email: '' ,
+        password: '',
+        error: ''
+    })
     console.log(userLogin)
 
 
@@ -36,8 +42,8 @@ const SignIn = ({showSignInModal, setSignInShowModal}) =>{
         <Form onFinish={()=>setSignInShowModal(!showSignInModal)}
             name="normal_login"
             className="login-form"
-            initialValues={{ remember: true }}
-            onSubmit={handleSubmit}
+           // initialValues={{ remember: true }}
+           // onSubmit={handleSubmit}
             id="loginForm"
             >
             <Form.Item
@@ -60,7 +66,7 @@ const SignIn = ({showSignInModal, setSignInShowModal}) =>{
                 />
             </Form.Item>
             <Form.Item>
-                <Button form="loginForm" onSubmit={handleSubmit} htmlType="submit" className="login-form-button" key="submit" onClick={handleSubmit} >
+                <Button form="loginForm" htmlType="submit" className="login-form-button" key="submit" onClick={handleSubmit} >
                 Log in
                 </Button>
                 <Button onClick={()=>setSignInShowModal(!showSignInModal)}>
