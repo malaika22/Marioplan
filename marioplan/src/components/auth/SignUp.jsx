@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
+import { UserContext } from '../context/UserContext';
+import {Redirect} from 'react-router-dom'
 
-const SignUp = ({showSignUpModal, setSignUpShowModal}) =>{
-    console.log(showSignUpModal)
+const SignUp = () =>{
+    const {user} = useContext(UserContext)
     const [singUpUserName, setSignUpUserName] = useState('')
     const [signUpPassword, setSignUpPassword] = useState('')
     const [signUpFirstName, setSignUpFirstName] = useState('')
     const [signUpLastName, setSignUpLastName] =useState('')
+    if (user) return <Redirect to='/' />
     return(
-        <Modal 
-        visible={showSignUpModal}
-        onCancel={()=>setSignUpShowModal(!showSignUpModal)}
-        title={'Sign up'}
-        footer={null}>
             <Form>
                 <Form.Item
                 label="Username"
@@ -44,14 +42,13 @@ const SignUp = ({showSignUpModal, setSignUpShowModal}) =>{
                 </Form.Item>
                 <Form.Item >
                 <Button type="primary" htmlType="submit">
-                    Login
+                    Signup
                 </Button>
-                <Button onClick={()=>setSignUpShowModal(!showSignUpModal)}>
+                <Button >
                     Cancel
                 </Button>
                 </Form.Item>
             </Form>
-        </Modal>
     )
 }
 

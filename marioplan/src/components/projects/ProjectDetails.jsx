@@ -1,20 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import {ProjectContext} from '../context/ProjectContext'
+import { UserContext } from '../context/UserContext';
 export const ProjectDetails = ({match}) =>{
     const   {projects=[]}= useContext(ProjectContext)
+    const {user} = useContext(UserContext)
     console.log(typeof(match.params.id))
     console.log(projects)
     const projectDetails= projects.filter(project => project.id==match.params.id)[0]
-    //const [projectId, setProjectID] = useState('');
-    // console.log(projectDetails)
-    // console.log(projectDetails.title)
-    // console.log(projectDetails.content)
-    // console.log(projectDetails.authorFirstName)
-    // useEffect(()=>{
-    //     const projectDetails= projects.filter(project => project.id==match.params.id)
-    //     console.log(projectDetails)
-    //     setProjectID(projectDetails.id)
-    // },[projectId])
+
+    if (!user) return <Redirect to = "/signin" />
     if (projectDetails) {
         return(
             <div className="project-container">

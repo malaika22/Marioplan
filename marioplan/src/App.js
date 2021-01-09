@@ -5,19 +5,22 @@ import NavBar from './components/header/NavBar'
 import Dashboard from './components/dashboard/Dashboard'
 import {ProjectDetails} from './components/projects/ProjectDetails'
 import CreateProject from './components/projects/CreateNewProject'
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
 
 function App() {
   return (
     
         <div className="App">
           <Layout>
-         
           <BrowserRouter>
           <NavBar />
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                {/* <Route exact path="/project/createproject" component={CreateProject} /> */}
                 <Route path="/projects/:id" component={ProjectDetails}/>
+                <Route path='/signin' component={SignIn}/>
+                <Route path="/create" component={CreateProject} />
+                <Route path='/signup' component={SignUp} />
               </Switch>   
           </BrowserRouter>
           </Layout>

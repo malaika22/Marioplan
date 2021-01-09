@@ -1,20 +1,16 @@
 import React, { useContext, useState } from 'react';
 import {UserContext} from '../context/UserContext'
-import {Modal} from 'antd'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Redirect } from 'react-router-dom';
 
-const SignIn = ({showSignInModal, setSignInShowModal}) =>{
-
-
-    const {signIn} = useContext(UserContext)
+const SignIn = () =>{
+    const {signIn , user} = useContext(UserContext)
     const [userLogin, setUserLogin] =  useState({
         email: '' ,
         password: '',
         error: ''
     })
-    console.log(userLogin)
-
 
         const onHandleChange = (e) => {
             console.log('in handle')
@@ -31,19 +27,11 @@ const SignIn = ({showSignInModal, setSignInShowModal}) =>{
             console.log('checking handlesubmit')
             signIn(userLogin)
         }
-
-        console.log(userLogin)
+        if (user) return <Redirect to='/' />
     return (
-        <Modal 
-        visible={showSignInModal}
-        footer={null}
-        onCancel={()=>setSignInShowModal(!showSignInModal)}
-        title={'Sign In'}>
-        <Form onFinish={()=>setSignInShowModal(!showSignInModal)}
+        <Form 
             name="normal_login"
             className="login-form"
-           // initialValues={{ remember: true }}
-           // onSubmit={handleSubmit}
             id="loginForm"
             >
             <Form.Item
@@ -69,12 +57,11 @@ const SignIn = ({showSignInModal, setSignInShowModal}) =>{
                 <Button form="loginForm" htmlType="submit" className="login-form-button" key="submit" onClick={handleSubmit} >
                 Log in
                 </Button>
-                <Button onClick={()=>setSignInShowModal(!showSignInModal)}>
+                <Button >
                     Cancel
                 </Button>
             </Form.Item>
             </Form>
-        </Modal>
     )
 }
 

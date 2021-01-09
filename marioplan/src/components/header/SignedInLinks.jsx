@@ -5,13 +5,14 @@ import CreateProject from '../projects/CreateNewProject';
 import {UserContext} from '../context/UserContext'
 
 const SignedInLinks = () =>{
-    const [showCreateProjectModal, setShowCreateProjectModal] = useState(false)
     const {signOut} = useContext(UserContext)
     return(
         <>
         <Menu className="nav-menu">
-            <Menu.Item className="nav-menu-item" onClick={() => setShowCreateProjectModal(!showCreateProjectModal)} >
+            <Menu.Item className="nav-menu-item">
+                <Link to='/create' >
                     New projects
+                </Link>
             </Menu.Item>
             <Menu.Item className="nav-menu-item" onClick={signOut}>
                 Log Out
@@ -20,7 +21,6 @@ const SignedInLinks = () =>{
                 MA
             </Menu.Item>
         </Menu>
-        {showCreateProjectModal && <CreateProject showCreateProjectModal={showCreateProjectModal} setShowCreateProjectModal={setShowCreateProjectModal}/>}
         </>
     )
 }
