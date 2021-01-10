@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import {ProjectContext} from '../context/ProjectContext'
 import { UserContext } from '../context/UserContext';
+import moment from 'moment'
 export const ProjectDetails = ({match}) =>{
     const   {projects=[]}= useContext(ProjectContext)
     const {user} = useContext(UserContext)
-    console.log(typeof(match.params.id))
-    console.log(projects)
     const projectDetails= projects.filter(project => project.id==match.params.id)[0]
 
     if (!user) return <Redirect to = "/signin" />
@@ -26,7 +25,7 @@ export const ProjectDetails = ({match}) =>{
                         {projectDetails.authorFirstName} 
                     </p>
                     <p className="project-post-time">
-                      September 22, 2020
+                    {moment(projectDetails.createdAt.toDate()).calendar()}
                     </p>
                 </div>
             </div>

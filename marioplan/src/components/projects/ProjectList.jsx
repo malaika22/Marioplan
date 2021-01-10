@@ -5,13 +5,10 @@ import {Link} from 'react-router-dom'
 import firebase from '../config/fbConfig'
 
 
-const ProjectList = () =>{
-    const {projects,fetchingData, loading} = useContext(ProjectContext)
-
-    
+const ProjectList = ({projects}) =>{
+    console.log(projects)
     return (
         <div>
-            {loading && <h1>loading</h1>}
             {projects.map(project=>
             <Link to={`/projects/${project.id}`} >
                 <ProjectSummaryCard project={project}/>
