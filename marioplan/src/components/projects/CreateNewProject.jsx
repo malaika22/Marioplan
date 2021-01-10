@@ -5,8 +5,12 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ProjectContext } from '../context/ProjectContext';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import {useHistory} from 'react-router-dom'
+// import  from 'react-router-dom'
+ 
+const CreateProject = () =>{
 
-const CreateProject = ({showCreateProjectModal, setShowCreateProjectModal}) =>{
+        let history =useHistory();
         const {createProject} = useContext(ProjectContext);
         const {user} = useContext(UserContext)
         const [projectTitle, setProjectTitle] = useState('');
@@ -19,7 +23,8 @@ const CreateProject = ({showCreateProjectModal, setShowCreateProjectModal}) =>{
             content: projectContent,
         }
         createProject(project);
-        setShowCreateProjectModal(!showCreateProjectModal)
+        history.push('/')
+
      } 
 
     if(!user) return <Redirect to='signin' />
